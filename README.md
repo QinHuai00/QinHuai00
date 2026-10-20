@@ -1,4 +1,4 @@
-# 严文跃 · AI 应用开发
+﻿# 严文跃 · AI 应用开发
 
 27 届计算机科学与技术本科，求职方向：**AI 应用开发 / 大模型应用开发**。
 习惯把大模型能力做成"能跑、能测、能讲清楚"的工程，而不是停在 Demo 阶段。
@@ -8,14 +8,14 @@
 ### [rag-knowledge-base](https://github.com/QinHuai00/rag-knowledge-base)
 
 企业知识库 RAG 问答系统，已完成 V1 → V4 优化：文档解析 → 父子块切分 → 向量 + BM25 双路召回 → RRF 融合 → 规则精排 → 引用溯源 → 低置信度拒答。
-自带 **53 条评测集**与四级消融实验：规则精排使**小节级 Recall@1 从 93.6% 提升到 100%、MRR 从 0.968 提升到 1.000**（离线模式，口径见仓库）。零依赖可跑，配置 Key 后自动切换真实模型。
+自带 **53 条评测集**与四级消融实验：V4 使**小节级 Recall@1 从 93.6% 提升到 100%、MRR 从 0.968 提升到 1.000、nDCG@5 从 0.976 提升到 1.000**（离线模式，口径见仓库）。零依赖可跑，配置 Key 后自动切换真实模型。
 `Python` `FastAPI` `RAG` `BM25` `RRF` `评测` `GitHub Actions`
 [优化实录](https://github.com/QinHuai00/rag-knowledge-base/blob/main/docs/optimization-log.md)
 
 ### [ai-resume-matcher](https://github.com/QinHuai00/ai-resume-matcher)
 
 AI 简历—岗位匹配助手：JD / 简历结构化 → 可解释三维评分（硬性要求 + 技能覆盖 + 经历相关度）→ 缺失技能与分级改写建议。
-用**留一交叉验证（LOOCV）** 校准权重，**MAE 从 6.5 降到 4.4、Spearman 0.979、分档准确率 100%**；SQLite 缓存、asyncio 批量、**46 个单元测试**。
+用**留一交叉验证（LOOCV）** 校准权重，**MAE 从 6.5 降到 4.4、Spearman 0.979、分档准确率 100%**；SQLite 缓存、asyncio 批量、**53 个单元测试**（含缓存键评分配置指纹）。
 `Python` `LLM 结构化输出` `LOOCV` `SQLite` `Streamlit` `GitHub Actions`
 [优化实录](https://github.com/QinHuai00/ai-resume-matcher/blob/main/docs/optimization-log.md)
 
