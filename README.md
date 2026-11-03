@@ -27,8 +27,19 @@ AI 简历—岗位匹配助手：JD / 简历结构化 → 可解释三维评分�
 `Python` `LLM 结构化输出` `LOOCV` `SQLite` `Streamlit` `GitHub Actions`
 [优化实录](https://github.com/QinHuai00/ai-resume-matcher/blob/main/docs/optimization-log.md)
 
-> 三个仓库都按"可运行、可评测、可复现"的标准做：README + 单元测试 + GitHub Actions CI + 优化实录/设计取舍文档。
+> 上面三个仓库都按"可运行、可评测、可复现"的标准做：README + 单元测试 + GitHub Actions CI + 优化实录/设计取舍文档。
 > 离线数字只验证工程链路与相对改进，不代表真实模型效果；接入真实 API 后需用同一脚本重测。
+
+## 📚 复现与二次开发（学习记录）
+
+### [rag-kb-pro](https://github.com/QinHuai00/rag-kb-pro)
+
+本地知识库 RAG 的上游复现 + 二次开发（上游：[lhh737/KnowledgeBase-RAG-LLM-System](https://github.com/lhh737/KnowledgeBase-RAG-LLM-System)，MIT，`upstream/` 内保留逐字快照与版权头）。
+做三件事：① 定位并修复上游 `add_texts(metadata=)` 被 `**kwargs` 静默吞掉导致元数据全空的缺陷（用最小复现类把行为锁进单测）；② 把 `similarity_threshold`（实为 `k`）拆成 `top_k` + `dense_min_score`；③ 加混合检索（BM25 + 向量 + RRF）、可插拔 Embedder（真实 DashScope / 离线确定性）、28 题评测脚手架与 FastAPI 服务层。
+
+真实结果（离线 HashingEmbedder，28 题）：bm25/hybrid Top-1 92.9%、hybrid 关键词命中@3 89.3%（bm25 82.1%）；**hybrid+rerank 反而掉 3.6pt Top-1**——负结论原样保留在 `eval/results.md`。63 个离线用例，CI 全绿。
+`Python` `BM25` `RRF` `FastAPI` `评测` `pytest`
+[评测结果](https://github.com/QinHuai00/rag-kb-pro/blob/main/eval/results.md) ｜ [设计取舍](https://github.com/QinHuai00/rag-kb-pro/blob/main/docs/DESIGN.md)
 
 ## 🧰 技术栈
 
